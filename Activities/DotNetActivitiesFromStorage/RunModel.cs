@@ -37,7 +37,7 @@
         public long? WorkoutType { get; set; }
 
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("external_id")]
         public string ExternalId { get; set; }
