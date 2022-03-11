@@ -60,3 +60,5 @@ C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStor
 C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStorage\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStorage\bin\Debug\netcoreapp3.1\Microsoft.WindowsAzure.Storage.dll
 C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStorage\obj\Debug\netcoreapp3.1\remstrava-activities.csproj.CopyComplete
+C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStorage\obj\Debug\netcoreapp3.1\remstrava-activities.csprojAssemblyReference.cache
+C:\Users\remid\Dev\dev2022\remstrava-backend\Activities\DotNetActivitiesFromStorage\bin\Debug\netcoreapp3.1\local.settings.json

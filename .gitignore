@@ -1,0 +1,4 @@
+
+*.dll
+bin/*
+Activities/DotNetActivitiesFromStorage/local.settings.json
