@@ -34,20 +34,27 @@ namespace DotNetActivitiesFromStorage
              .AddEnvironmentVariables()
              .Build();
 
+            log.LogInformation("fetching strava storage password");
+            
             var stravaStoragePassword = config["StravaStoragePassword"];
-
-            log.LogInformation(stravaStoragePassword);
-
+            var storageUserName = "remsstravaactivities";
             var activitiesBuilder = new StringBuilder();
 
+            
             CloudStorageAccount storageAccount = new CloudStorageAccount(
-               new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials("remsstravaactivities", stravaStoragePassword), true);
+               new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(storageUserName, stravaStoragePassword), true);
+            
+            log.LogInformation("creating storage account CloudStorageAccount with credentials {STORAGEUSERNAME}", storageUserName);
 
             // Create a blob client.
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
+            log.LogInformation("creating CreateCloudBlobClient");
+            
             // Get a reference to a container named "mycontainer."
             CloudBlobContainer container = blobClient.GetContainerReference("activities");
+            
+            log.LogInformation("getting containers activities");
 
             BlobContinuationToken token = null;
             do
@@ -60,9 +67,10 @@ namespace DotNetActivitiesFromStorage
                     if (item.GetType() == typeof(CloudBlockBlob))
                     {
                         CloudBlockBlob blob = (CloudBlockBlob)item;
-                        Console.WriteLine("Block blob of length {0}: {1}", blob.Properties.Length, blob.Uri);
+                        log.LogInformation("Block blob of length {0}: {1}", blob.Properties.Length, blob.Uri);
                         var blobContent = await blob.DownloadTextAsync();
                         activitiesBuilder.Append(blobContent.Substring(2, blobContent.Length - 3) + ",");
+
 
                     }
 
@@ -70,14 +78,14 @@ namespace DotNetActivitiesFromStorage
                     {
                         CloudPageBlob pageBlob = (CloudPageBlob)item;
 
-                        Console.WriteLine("Page blob of length {0}: {1}", pageBlob.Properties.Length, pageBlob.Uri);
+                        log.LogInformation("Page blob of length {0}: {1}", pageBlob.Properties.Length, pageBlob.Uri);
                     }
 
                     else if (item.GetType() == typeof(CloudBlobDirectory))
                     {
                         CloudBlobDirectory directory = (CloudBlobDirectory)item;
-
-                        Console.WriteLine("Directory: {0}", directory.Uri);
+                        
+                        log.LogInformation("Directory: {0}", directory.Uri);
                     }
                 }
             } while (token != null);
