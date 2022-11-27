@@ -194,7 +194,7 @@
 
     public enum Timezone { Gmt0100EuropeAmsterdam, Gmt0100EuropeBudapest, Gmt0100EuropeParis, Gmt0100EuropeRome, Gmt0100EuropeVienna, Gmt0500AmericaNewYork, Gmt0700AsiaHoChiMinh, Gmt0800AmericaLosAngeles, Gmt0800AsiaKualaLumpur };
 
-    public enum Visibility { Everyone };
+    public enum Visibility { Everyone, followers_only };
 
     internal static class Converter
     {
